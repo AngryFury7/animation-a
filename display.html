@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>display</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+    <style>
+        *{margin:0;padding:0}
+        body{background-color:#e3e3e3;min-height:100vh;width:100vw;font-family:Arial, Helvetica, sans-serif;overflow-x: hidden;}
+        a{text-decoration:none;color:black;font-size:19px}
+        ::-webkit-scrollbar{display:none}
+        .img{height:100px;width:150px;overflow: hidden;position:absolute;margin:20px}
+        .img img {height:100%;width:100%;object-fit: cover;}
+
+    </style>
+</head>
+<body>
+    <div class="container" style="position:relative;height:100vh;width:100vw">
+        <div class="nav" style="position:absolute;top:0;height:60px;display:flex;flex-direction:row;justify-content:space-between;align-items:center;width:100vw;">
+            <a href="#" class="links" style="margin-inline:20px;">Piyush</a>
+            <a href="#" class="links" style="margin-inline:20px;">Jakhar</a>
+        </div>
+
+        <div class="footer" style="position:absolute;bottom:0;height:60px;display:flex;flex-direction:row;justify-content:space-between;align-items:flex-end;width:100vw;" >
+            <a href="#" style="margin-inline:20px;">Nikhil</a>
+            <a href="#" style="margin-inline:20px">Mahala</a>
+        </div>
+
+
+        <div class="gallery" style="height:calc(100vh - 60px);width:100%;position:relative">
+            <div class="img">
+                <img src="./changing-images/one.jpg" alt="none">
+            </div>
+            <div class="img">
+                <img src="./changing-images/two.jpg" alt="none">
+            </div>
+            <div class="img">
+                <img src="./changing-images/three.jpg" alt="none">
+            </div>
+            <div class="img">
+                <img src="./changing-images/four.jpg" alt="none">
+            </div>
+            <div class="img">
+                <img src="./changing-images/five.jpg" alt="none">
+            </div>
+            <div class="img">
+                <img src="./changing-images/six.jpg" alt="none">
+            </div>
+            <div class="img">
+                <img src="./changing-images/four.jpg" alt="none">
+            </div>
+            <div class="img">
+                <img src="./changing-images/three.jpg" alt="none">
+            </div>
+            <div class="img">
+                <img src="./changing-images/two.jpg" alt="none">
+            </div>
+            <div class="img">
+                <img src="./changing-images/one.jpg" alt="none">
+            </div>
+            <div class="img">
+                <img src="./changing-images/two.jpg" alt="none">
+            </div>
+            <div class="img">
+                <img src="./changing-images/six.jpg" alt="none">
+            </div>
+            <div class="img">
+                <img src="./changing-images/five.jpg" alt="none">
+            </div>
+            <div class="img">
+                <img src="./changing-images/three.jpg" alt="none">
+            </div>
+        </div>
+    </div>
+    <script>
+       // gsap.registerPlugin(ScrollTrigger);
+       
+        const position = [
+       {top : "4%" ,left : "0%"},
+       {top : "0%" ,left : "10%"},
+       {top : "0%" ,left : "60%"},
+       {top : "16%" ,left : "15%"},
+       {top : "16%" ,left : "40%"},
+       {top : "16%" ,left : "90%"},
+       {top : "32%" ,left : "50%"},
+       {top : "32%" ,left : "75%"},
+       {top : "48%" ,left : "0%"},
+       {top : "64%" ,left : "30%"},
+       {top : "64%" ,left : "50%"},
+       {top : "64%" ,left : "90%"},
+       {top : "80%" ,left : "20%"},
+       {top : "80%" ,left : "70%"},
+        ];
+
+        const imgs = document.querySelectorAll('.img');
+
+        gsap.set('.img',{
+            top : "45%",
+            left: "50%",
+            transform : "translate(-50%,-50%) scale(0)"
+        })
+
+        gsap.to('.img',{
+            height:"400px",
+            width: "600px",
+            scale : 1,
+            stagger : 0.15,
+            duration : 0.75 ,
+            ease : "power2.out",
+            delay : 1,
+            onComplete : scatterAndShrink,
+        })
+
+        function scatterAndShrink () {
+            gsap.to('.img',{
+                height:"100px",
+                width : "150px",
+                transform : "none",
+                top : (i) => position[i].top,
+                left : (i) => position[i].left,
+                stagger : 0.075,
+                duration : 0.75,
+                ease : "power2.out",
+            })
+        }
+    </script>
+</body>
+</html>
